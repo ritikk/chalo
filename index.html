@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <style>
+      .angular-google-map-container {
+          width: 100%;
+          height: 504px;
+      }
+    </style>
+
+    <link href="/css/preview-frame.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+
+    <script>
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'starter.services' is found in services.js
+// 'starter.controllers' is found in controllers.js
+angular.module('app', ['ionic'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+    .state('page3', {
+      url: '/welcome',
+      templateUrl: 'page3.html'
+    })
+    
+    .state('page5', {
+      url: '/signup/name',
+      templateUrl: 'page5.html'
+    })
+    
+    .state('page6', {
+      url: '/signup/email',
+      templateUrl: 'page6.html'
+    })
+    
+    .state('page7', {
+      url: '/signup/phone',
+      templateUrl: 'page7.html'
+    })
+    
+    .state('page8', {
+      url: '/signup/contacts',
+      templateUrl: 'page8.html'
+    })
+    
+    .state('page9', {
+      url: '/chalo',
+      templateUrl: 'page9.html'
+    })
+    
+    .state('page10', {
+      url: '/chalo/advanced',
+      templateUrl: 'page10.html'
+    })
+    
+    .state('page11', {
+      url: '/chalo/contacts',
+      templateUrl: 'page11.html'
+    })
+    ;
+
+  // if none of the above states are matched, use this as the fallback
+  
+  $urlRouterProvider.otherwise('/welcome');
+  
+
+});
+
+
+    </script>
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+    <div>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+    </div>
+</div>
+<script id="page3.html" type="text/ng-template">
+<ion-view title="GET STARTED">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h1>CHALO</h1>
+        <div>
+            <p>
+                <strong>CHALO</strong>LETS YOU COORDINATE MEETING UP WITH YOUR FAVORITE PEEPS AT THE CLICK OF A BUTTON.</p>
+        </div>
+        <div class="spacer" style="height: 100px;"></div>
+        <a href="#/signup/name" class="button button-positive button-block">GET GOING!</a>
+    </ion-content>
+</ion-view></script>
+<script id="page5.html" type="text/ng-template">
+<ion-view title="NAME">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h1>YOUR NAME</h1>
+        <div class="spacer" style="height: 100px;"></div>
+        <form>
+            <label class="item item-input" name="fullName">
+                <span class="input-label"></span>
+                <input type="text" placeholder="FULL NAME">
+            </label>
+        </form>
+        <a href="#/signup/email" class="button button-positive button-block">CONTINUE</a>
+    </ion-content>
+</ion-view></script>
+<script id="page6.html" type="text/ng-template">
+<ion-view title="EMAIL">
+    <ion-content padding="true" class="has-header">
+        <h1>YOUR EMAIL</h1>
+        <div class="spacer" style="height: 100px;"></div>
+        <form>
+            <label class="item item-input" name="email">
+                <span class="input-label"></span>
+                <input type="email" placeholder="EMAIL">
+            </label>
+        </form>
+        <a href="#/signup/phone" class="button button-positive button-block">CONTINUE</a>
+    </ion-content>
+</ion-view></script>
+<script id="page7.html" type="text/ng-template">
+<ion-view title="PHONE">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h1>YOUR PHONE</h1>
+        <div class="spacer" style="height: 100px;"></div>
+        <form>
+            <label class="item item-input" name="phone">
+                <span class="input-label"></span>
+                <input type="tel" placeholder="PHONE">
+            </label>
+        </form>
+        <a href="#/signup/contacts" class="button button-positive button-block">CONTINUE</a>
+    </ion-content>
+</ion-view></script>
+<script id="page8.html" type="text/ng-template">
+<ion-view title="CONTACTS">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <h2>YOUR CONTACTS</h2>
+        <div class="spacer" style="height: 100px;"></div>
+        <a href="#/chalo" class="button button-positive button-block">GIVE YOUR BLESSINGS</a>
+    </ion-content>
+</ion-view></script>
+<script id="page9.html" type="text/ng-template">
+<ion-view title="CHALO">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <a href="#/chalo/advanced" class="button button-calm button-clear button-block">swipe right for options</a>
+        <div class="spacer" style="height: 100px;"></div>
+        <div>
+            <p>
+                <strong>let's go</strong>
+            </p>
+        </div>
+        <a href="#/chalo/contacts" class="button button-positive button-block">CHALO</a>
+        <div class="spacer" style="height: 100px;"></div>
+        <div>
+            <p>
+                <strong>i've reached</strong>
+            </p>
+        </div>
+        <a href="#/chalo/contacts" class="button button-royal button-block">AAO</a>
+    </ion-content>
+</ion-view></script>
+<script id="page10.html" type="text/ng-template">
+<ion-view title="CHALO">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Chow Time</h2>
+                <p></p>
+                <a href="#/chalo/contacts" class="button button-positive button-outline button-block">CHALO</a>
+            </ion-item>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Cuppa Joe</h2>
+                <p></p>
+                <a href="#/chalo/contacts" class="button button-positive button-outline button-block">CHALO</a>
+            </ion-item>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Puff Puff</h2>
+                <p></p>
+                <a href="#/chalo/contacts" class="button button-positive button-outline button-block">CHALO</a>
+            </ion-item>
+            <ion-item class="item-thumbnail-left">
+                <img src="/img/avatar-img.png">
+                <h2>Meeting Time</h2>
+                <p></p>
+                <a href="#/chalo/contacts" class="button button-positive button-outline button-block">CHALO</a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view></script>
+<script id="page11.html" type="text/ng-template">
+<ion-view title="CONTACTS">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <label class="item item-input" name="to">
+                <span class="input-label">To:</span>
+                <input type="text" placeholder="">
+            </label>
+            <ion-list>
+                <ion-item class="item-thumbnail-left">
+                    <img src="/img/avatar-img.png">
+                    <h2>Title</h2>
+                    <p>Item</p>
+                </ion-item>
+                <ion-item class="item-thumbnail-left">
+                    <img src="/img/avatar-img.png">
+                    <h2>Title</h2>
+                    <p>Item</p>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+  </body>
+</html>
