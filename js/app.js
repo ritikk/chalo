@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('chalo', ['ionic'])
+angular.module('chalo', ['ionic','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -66,7 +66,8 @@ angular.module('chalo', ['ionic'])
     
     .state('page11', {
       url: '/chalo/contacts',
-      templateUrl: 'page11.html'
+      templateUrl: 'page11.html',
+      controller: 'ContactsCtrl'
     })
     ;
 
@@ -74,4 +75,12 @@ angular.module('chalo', ['ionic'])
   
   $urlRouterProvider.otherwise('/welcome');
   
+})
+
+.controller('ContactsCtrl', function($scope, $cordovaContacts){
+    $cordovaContacts.pickContact(function(contact){
+        $scope.contact = contact;
+    }, function(error){
+    });
 });
+
