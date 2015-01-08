@@ -80,7 +80,9 @@ angular.module('chalo', ['ionic','ngCordova'])
 .controller('ContactsCtrl', function($scope, $cordovaContacts){
     $cordovaContacts.pickContact(function(contact){
         $scope.contact = contact;
+        alert(contact.displayName);
     }, function(error){
+        alert(error);
     });
 });
 
