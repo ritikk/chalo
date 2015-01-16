@@ -154,10 +154,8 @@
 <ion-view title="CONTACTS">
     <ion-content padding="true" class="has-header">
         <form>
+            <a ng-click="addContact()" class="button button-positive button-block">Add</a>
             <ion-list>
-                <ion-item class="item-button">
-                    <a ng-click="addContact()" class="button button-positive button-block">Add More</a>
-                </ion-item>
                 <ion-item class="item-avatar" ng-repeat="contact in selectedContacts">
                     <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
                     <h2>{{contact.name.formatted}}</h2>
