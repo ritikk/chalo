@@ -18,6 +18,8 @@ angular.module('chalo', ['ionic','ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    console.log('console.log works just fine');
   });
 })
 
