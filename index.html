@@ -154,20 +154,18 @@
 <ion-view title="CONTACTS">
     <ion-content padding="true" class="has-header">
         <form>
-            <label class="item item-input" name="to">
-                <span class="input-label">To:</span>
-                <input type="text" placeholder="">
-            </label>
             <ion-list>
-                <ion-item class="item-thumbnail-left">
-                    <img src="/img/avatar-img.png">
-                    <h2>{{contact.displayName}}</h2>
-                    <p>Item</p>
+                <ion-item class="item-button">
+                    <a ng-click="addContact()" class="button button-positive button-block">Add More</a>
                 </ion-item>
-                <ion-item class="item-thumbnail-left">
-                    <img src="/img/avatar-img.png">
-                    <h2>Title</h2>
-                    <p>Item</p>
+                <ion-item class="item-avatar" ng-repeat="contact in selectedContacts">
+                    <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
+                    <h2>{{contact.name.formatted}}</h2>
+                    <ion-list>
+                        <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers">
+                            <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"/>
+                        </ion-item>
+                    </ion-list>
                 </ion-item>
             </ion-list>
         </form>

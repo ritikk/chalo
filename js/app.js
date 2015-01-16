@@ -78,11 +78,18 @@ angular.module('chalo', ['ionic','ngCordova'])
 })
 
 .controller('ContactsCtrl', function($scope, $cordovaContacts){
-    $cordovaContacts.pickContact(function(contact){
-        $scope.contact = contact;
-        alert(contact.displayName);
-    }, function(error){
-        alert(error);
-    });
+	$scope.selectedContacts = [];
+
+	$scope.addContact = function () {
+	    $cordovaContacts.pickContact(function(contact){
+            $scope.selectedContacts.push(contact.clone());
+            console.log("selected contact: " + JSON.stringify(contact));
+        }, function(error){
+            console.log("error");
+        });
+	}
+
+	$scope.addContact();
+
 });
 
