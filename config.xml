@@ -19,6 +19,10 @@
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
     </feature>
+    <feature name="debug-server" required="true">
+        <param name="domain" value="http://192.168.0.51:8080"/>
+        <param name="key" value="iphone"/>
+    </feature>
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
     <gap:plugin name="org.apache.cordova.console" version="0.2.11" />
     <gap:platform name="ios" />
