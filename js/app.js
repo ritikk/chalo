@@ -82,14 +82,12 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 	$scope.addContact = function () {
 	    $cordovaContacts.pickContact(function(contact){
+	        console.log("selected contact: " + JSON.stringify(contact));
 	        $scope.$apply(function() {
 	            $scope.selectedContacts.push(contact.clone());
-                console.log("selected contact: " + JSON.stringify(contact));
 	        });
         }, function(error){
-            $scope.$apply(function(){
-                console.log("error");
-            });
+            console.log("error");
         });
 	};
 
