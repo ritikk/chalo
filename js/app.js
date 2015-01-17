@@ -86,7 +86,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 	            console.log("contact " + contact.name.formatted + " has no phonenumbers");
 	        }
         }, function(error){
-            console.log("error");
+            console.log(error);
         });
 	};
 
@@ -96,8 +96,8 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 .controller('ChaloCtrl', function($scope, $state) {
 
-    $scope.sendChalo = function() {
-        $state.go('chalo',{operation:'chalo'});
+    $scope.selectContacts = function(op) {
+        $state.go('contacts',{operation:op});
     };
 })
 
