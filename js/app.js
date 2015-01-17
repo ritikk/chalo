@@ -138,7 +138,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         setFullName : function(fullName) {
             user.fullName = fullName;
             storage.setItem(key, JSON.stringify(user));
-            console.log('saved user:' JSON.stringify(user));
+            console.log('saved user:' + JSON.stringify(user));
         },
         getPhone : function() {
             return user.phone;
@@ -146,7 +146,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         setPhone : function(phone) {
             user.phone = phone;
             storage.setItem(key, JSON.stringify(user));
-            console.log('saved user:' JSON.stringify(user));
+            console.log('saved user:' + JSON.stringify(user));
         }
     };
 }])
