@@ -160,10 +160,10 @@
                 <ion-item class="item-avatar">
                     <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
                     <h2>{{contact.name.formatted}}</h2>
-                    <p></p>
+                    <p>{{contact.selectedNumber}}</p>
                 </ion-item>
                 <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers" name="$index">
-                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"/>
+                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value" {{ phone.pref ? 'checked="checked"' : '' }}/>
                     <div class="item-content item-text-wrap">
                         {{phone.value}}
                     </div>
