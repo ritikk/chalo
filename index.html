@@ -162,8 +162,8 @@
                     <h2>{{contact.name.formatted}}</h2>
                     <p>{{contact.selectedNumber}}</p>
                 </ion-item>
-                <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers" name="$index">
-                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value" {{ phone.pref ? 'checked="checked"' : '' }}/>
+                <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers" name="{{'radio' + $index}}">
+                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value" {{ $first ? 'checked="checked"' : '' }}/>
                     <div class="item-content item-text-wrap">
                         {{phone.value}}
                     </div>
