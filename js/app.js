@@ -82,7 +82,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 	            $scope.selectedContacts.push(contact);
 	        } else {
 	            alert("Sorry this contact has no phone numbers");
-	            console.log("contact " + contact.name.formatted " has no phonenumbers");
+	            console.log("contact " + contact.name.formatted + " has no phonenumbers");
 	        }
         }, function(error){
             console.log("error");
