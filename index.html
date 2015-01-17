@@ -162,13 +162,14 @@
                     <h2>{{contact.name.formatted}}</h2>
                     <p>{{contact.selectedNumber}}</p>
                 </ion-item>
-                <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers" name="{{'radio' + $index}}">
-                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value" {{ $first ? 'checked="checked"' : '' }}/>
+                <label class="item-radio" ng-repeat="phone in contact.phoneNumbers" >
+                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"
+                           name="{{'radio' + $index}}" {{ $first ? 'checked="checked"' : '' }}/>
                     <div class="item-content item-text-wrap">
                         {{phone.value}}
                     </div>
                     <i class="radio-icon ion-checkmark"></i>
-                </ion-item>
+                </label>
             </div>
         </form>
     </ion-content>
