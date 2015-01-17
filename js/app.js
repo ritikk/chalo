@@ -61,14 +61,13 @@ angular.module('chalo', ['ionic','ngCordova'])
     })
     
     .state('contacts', {
-      url: '/chalo/contacts',
+      url: '/chalo/contacts/{opName}',
       templateUrl: 'page11.html',
       controller: 'ContactsCtrl'
     })
     ;
 
   // if none of the above states are matched, use this as the fallback
-  
   $urlRouterProvider.otherwise('/welcome');
   
 })
@@ -84,7 +83,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 	            $scope.selectedContacts.push(contact);
 	        } else {
 	            alert("Sorry this contact has no phone numbers");
-	            console.log("contact " + contact.name.formatted + " has no phonenumbers");
+	            console.log("contact " + contact.name.formatted + " has no phone numbers");
 	        }
         }, function(error){
             console.log(error);
