@@ -73,9 +73,9 @@ angular.module('chalo', ['ionic','ngCordova'])
   
 })
 
-.controller('ContactsCtrl', function($scope, $cordovaContacts, $stateParams){
+.controller('ContactsCtrl', function($scope, $cordovaContacts, $state, $stateParams){
 	$scope.selectedContacts = [];
-    console.log('contacts controller: ' + $stateParams.operation);
+    console.log('contacts controller: ' + $stateParams.opName);
 	$scope.addContact = function () {
 	    $cordovaContacts.pickContact().then(function(contact){
 	        console.log("selected contact: " + JSON.stringify(contact));
@@ -93,13 +93,21 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 	$scope.addContact();
 
+	$scope.cancel() {
+	    $state.go('chalo');
+	};
+
 })
 
 .controller('ChaloCtrl', function($scope, $state) {
 
     $scope.selectContacts = function(op) {
-        $state.go('contacts',{operation:op});
+        $state.go('contacts',{opName : op});
     };
+
+    $scope.showAdvanced = function() {
+        $state.go('chalo-advanced');
+    }
 })
 
 .controller('SignupNameCtrl', function($scope, $user, $state){
