@@ -40,18 +40,19 @@ angular.module('chalo', ['ionic','ngCordova'])
     .state('signup-name', {
       url: '/signup/name',
       templateUrl: 'page5.html',
-      controller: 'SignupCtrl'
+      controller: 'SignupNameCtrl'
     })
     
     .state('signup-phone', {
       url: '/signup/phone',
       templateUrl: 'page7.html',
-      controller: 'SignupCtrl'
+      controller: 'SignupPhoneCtrl'
     })
     
     .state('chalo', {
       url: '/chalo',
-      templateUrl: 'page9.html'
+      templateUrl: 'page9.html',
+      controller: 'ChaloCtrl'
     })
     
     .state('chalo-advanced', {
@@ -59,7 +60,7 @@ angular.module('chalo', ['ionic','ngCordova'])
       templateUrl: 'page10.html'
     })
     
-    .state('page11', {
+    .state('contacts', {
       url: '/chalo/contacts',
       templateUrl: 'page11.html',
       controller: 'ContactsCtrl'
@@ -72,9 +73,9 @@ angular.module('chalo', ['ionic','ngCordova'])
   
 })
 
-.controller('ContactsCtrl', function($scope, $cordovaContacts){
+.controller('ContactsCtrl', function($scope, $cordovaContacts, $stateParams){
 	$scope.selectedContacts = [];
-    console.log('contacts controller');
+    console.log('contacts controller: ' + $stateParams.operation);
 	$scope.addContact = function () {
 	    $cordovaContacts.pickContact().then(function(contact){
 	        console.log("selected contact: " + JSON.stringify(contact));
@@ -93,18 +94,27 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 })
 
-.controller('SignupCtrl', function($scope, $user){
+.controller('ChaloCtrl', function($scope, $state) {
 
-    $scope.fullName = '';
-    $scope.phone = '';
+    $scope.sendChalo = function() {
+        $state.go('chalo',{operation:'chalo'});
+    };
+})
 
-    $scope.setFullName = function() {
-        $user.setFullName($scope.fullName);
-    }
+.controller('SignupNameCtrl', function($scope, $user, $state){
 
-    $scope.setPhone = function() {
-        $user.setPhone($scope.phone);
-    }
+    $scope.setFullName = function(fullName) {
+        $user.setFullName(fullName);
+        $state.go('signup-phone');
+    };
+
+})
+
+.controller('SignupPhoneCtrl', function($scope, $user, $state){
+    $scope.setPhone = function(phone) {
+        $user.setPhone(phone);
+        $state.go('chalo');
+    };
 })
 
 .controller('WelcomeCtrl', function($scope, $user, $state) {
@@ -128,8 +138,8 @@ angular.module('chalo', ['ionic','ngCordova'])
     };
     var key = "currentUser";
     if(storage.getItem(key)) {
-        user = JSON.parse($storage.getItem(key));
-        console.log('User parsed: ' + $storage.getItem(key));
+        user = JSON.parse(storage.getItem(key));
+        console.log('User parsed: ' + storage.getItem(key));
     }
     return {
         getFullName : function() {
