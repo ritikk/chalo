@@ -156,21 +156,19 @@
     <ion-content padding="true" class="has-header">
         <form>
             <a ng-click="addContact()" class="button button-positive button-block">Add</a>
-            <ion-list>
-                <ion-item class="item-avatar" ng-repeat="contact in selectedContacts">
+            <div class="list card"  ng-repeat="contact in selectedContacts">
+                <ion-item class="item-avatar">
                     <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
                     <h2>{{contact.name.formatted}}</h2>
-                    <ion-list>
-                        <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers">
-                            <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"/>
-                            <div class="item-content">
-                                {{phone.value}}
-                            </div>
-                            <i class="radio-icon ion-checkmark"></i>
-                        </ion-item>
-                    </ion-list>
                 </ion-item>
-            </ion-list>
+                <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers">
+                    <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"/>
+                    <div class="item-content item-text-wrap">
+                        {{phone.value}}
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </ion-item>
+            </div>
         </form>
     </ion-content>
 </ion-view></script>
