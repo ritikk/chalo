@@ -93,7 +93,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 	$scope.addContact();
 
-	$scope.cancel() {
+	$scope.cancel = function() {
 	    $state.go('chalo');
 	};
 
