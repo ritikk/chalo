@@ -78,7 +78,12 @@ angular.module('chalo', ['ionic','ngCordova'])
 	$scope.addContact = function () {
 	    $cordovaContacts.pickContact().then(function(contact){
 	        console.log("selected contact: " + JSON.stringify(contact));
-            $scope.selectedContacts.push(contact);
+	        if(contact.phoneNumbers) {
+	            $scope.selectedContacts.push(contact);
+	        } else {
+	            alert("Sorry this contact has no phone numbers");
+	            console.log("contact " + contact.name.formatted " has no phonenumbers");
+	        }
         }, function(error){
             console.log("error");
         });
@@ -133,6 +138,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         setFullName : function(fullName) {
             user.fullName = fullName;
             storage.setItem(key, JSON.stringify(user));
+            console.log('saved user:' JSON.stringify(user));
         },
         getPhone : function() {
             return user.phone;
@@ -140,6 +146,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         setPhone : function(phone) {
             user.phone = phone;
             storage.setItem(key, JSON.stringify(user));
+            console.log('saved user:' JSON.stringify(user));
         }
     };
 }])
