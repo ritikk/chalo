@@ -22,5 +22,6 @@
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
     <gap:plugin name="org.apache.cordova.console" version="0.2.11" />
     <gap:platform name="ios" />
+    <gap:platform name="android" />
     <gap:platform name="windows" />
 </widget>
