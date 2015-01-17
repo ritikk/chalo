@@ -163,6 +163,10 @@
                     <ion-list>
                         <ion-item class="item-radio" ng-repeat="phone in contact.phoneNumbers">
                             <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"/>
+                            <div class="item-content">
+                                {{phone.value}}
+                            </div>
+                            <i class="radio-icon ion-checkmark"></i>
                         </ion-item>
                     </ion-list>
                 </ion-item>
