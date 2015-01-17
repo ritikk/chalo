@@ -93,11 +93,11 @@ angular.module('chalo', ['ionic','ngCordova'])
     $scope.fullName = '';
     $scope.phone = '';
 
-    $scope.setFullName() {
+    $scope.setFullName = function() {
         $user.setFullName($scope.fullName);
     }
 
-    $scope.setPhone() {
+    $scope.setPhone = function() {
         $user.setPhone($scope.phone);
     }
 })
@@ -112,36 +112,34 @@ angular.module('chalo', ['ionic','ngCordova'])
     }
 })
 
-.factory('$storage', [function() {
-    return function() {
-        return window.localStorage;
-    };
+.factory('$storage', ['$window', function(win) {
+    return win.localStorage;
 }])
 
-.factory('$user', ['$storage', function($storage){
+.factory('$user', ['$storage', function(storage){
     var user = {
         fullName: null,
         phone: null
     };
     var key = "currentUser";
-    if($storage.getItem(key)) {
+    if(storage.getItem(key)) {
         user = JSON.parse($storage.getItem(key));
         console.log('User parsed: ' + $storage.getItem(key));
     }
-    return function(){
-        getFullName: function() {
+    return {
+        getFullName : function() {
             return user.fullName;
         },
-        setFullName: function(fullName) {
+        setFullName : function(fullName) {
             user.fullName = fullName;
-            $storage.setItem(key, JSON.stringify(user));
+            storage.setItem(key, JSON.stringify(user));
         },
-        getPhone: function() {
+        getPhone : function() {
             return user.phone;
         },
-        setPhone: function(phone) {
+        setPhone : function(phone) {
             user.phone = phone;
-            $storage.setItem(key, JSON.stringify(user));
+            storage.setItem(key, JSON.stringify(user));
         }
     };
 }])
