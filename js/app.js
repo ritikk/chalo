@@ -80,6 +80,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 	    $cordovaContacts.pickContact().then(function(contact){
 	        console.log("selected contact: " + JSON.stringify(contact));
 	        if(contact.phoneNumbers) {
+	            contact.selectedNumber = contact.phoneNumbers[0].value;
 	            $scope.selectedContacts.push(contact);
 	        } else {
 	            alert("Sorry this contact has no phone numbers");
@@ -118,12 +119,17 @@ angular.module('chalo', ['ionic','ngCordova'])
 })
 
 .controller('WelcomeCtrl', function($scope, $user, $state) {
-    $scope.showSignup = false;
 
     if($user.getPhone()) {
         $state.go('chalo');
-    } else {
-        $scope.showSignup = true;
+    }
+
+    $scope.getGoing = function () {
+        if($user.getPhone()) {
+            $state.go('chalo');
+        } else {
+            $state.go('signup-name');
+        }
     }
 })
 

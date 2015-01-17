@@ -47,7 +47,7 @@
                 <strong>CHALO</strong>LETS YOU COORDINATE MEETING UP WITH YOUR FAVORITE PEEPS AT THE CLICK OF A BUTTON.</p>
         </div>
         <div class="spacer" style="height: 100px;"></div>
-        <a href="#/signup/name" ng-show="showSignup" class="button button-positive button-block">GET GOING!</a>
+        <a ng-click="getGoing()" class="button button-positive button-block">GET GOING!</a>
     </ion-content>
 </ion-view></script>
 <script id="page5.html" type="text/ng-template">
@@ -142,7 +142,7 @@
                 </ion-item>
                 <label class="item item-radio" ng-repeat="phone in contact.phoneNumbers" >
                     <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"
-                           name="{{contactId}}" checked="{{ $first ? 'checked' : '' }}"/>
+                           name="{{contactId}}" />
                     <div class="item-content item-text-wrap">
                         {{phone.value}}
                     </div>
@@ -151,9 +151,12 @@
             </div>
         </form>
     </ion-content>
-    <ion-footer-bar class="bar-assertive">
+    <ion-footer-bar class="bar-dark">
         <div class="buttons">
-            <button class="button">Done</button>
+            <button class="button button-clear">Cancel</button>
+        </div>
+        <div class="buttons">
+            <button class="button button-positive">Send</button>
         </div>
     </ion-footer-bar>
 </ion-view></script>
