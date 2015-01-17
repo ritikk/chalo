@@ -41,19 +41,9 @@ angular.module('chalo', ['ionic','ngCordova'])
       templateUrl: 'page5.html'
     })
     
-    .state('page6', {
-      url: '/signup/email',
-      templateUrl: 'page6.html'
-    })
-    
     .state('page7', {
       url: '/signup/phone',
       templateUrl: 'page7.html'
-    })
-    
-    .state('page8', {
-      url: '/signup/contacts',
-      templateUrl: 'page8.html'
     })
     
     .state('page9', {

@@ -61,20 +61,6 @@
                 <input type="text" placeholder="FULL NAME">
             </label>
         </form>
-        <a href="#/signup/email" class="button button-positive button-block">CONTINUE</a>
-    </ion-content>
-</ion-view></script>
-<script id="page6.html" type="text/ng-template">
-<ion-view title="EMAIL">
-    <ion-content padding="true" class="has-header">
-        <h1>YOUR EMAIL</h1>
-        <div class="spacer" style="height: 100px;"></div>
-        <form>
-            <label class="item item-input" name="email">
-                <span class="input-label"></span>
-                <input type="email" placeholder="EMAIL">
-            </label>
-        </form>
         <a href="#/signup/phone" class="button button-positive button-block">CONTINUE</a>
     </ion-content>
 </ion-view></script>
@@ -89,15 +75,7 @@
                 <input type="tel" placeholder="PHONE">
             </label>
         </form>
-        <a href="#/signup/contacts" class="button button-positive button-block">CONTINUE</a>
-    </ion-content>
-</ion-view></script>
-<script id="page8.html" type="text/ng-template">
-<ion-view title="CONTACTS">
-    <ion-content padding="true" scroll="false" class="has-header">
-        <h2>YOUR CONTACTS</h2>
-        <div class="spacer" style="height: 100px;"></div>
-        <a href="#/chalo" class="button button-positive button-block">GIVE YOUR BLESSINGS</a>
+        <a href="#/chalo" class="button button-positive button-block">CONTINUE</a>
     </ion-content>
 </ion-view></script>
 <script id="page9.html" type="text/ng-template">
@@ -157,14 +135,14 @@
         <form>
             <a ng-click="addContact()" class="button button-positive button-block">Add</a>
             <div class="list card"  ng-repeat="contact in selectedContacts">
-                <ion-item class="item-avatar">
+                <ion-item class="item-avatar" ng-init="contactId = 'contact' + $index">
                     <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
                     <h2>{{contact.name.formatted}}</h2>
                     <p>{{contact.selectedNumber}}</p>
                 </ion-item>
-                <label class="item-radio" ng-repeat="phone in contact.phoneNumbers" >
+                <label class="item item-radio" ng-repeat="phone in contact.phoneNumbers" >
                     <input type="radio" ng-model="contact.selectedNumber" ng-value="phone.value"
-                           name="{{'radio' + $index}}" {{ $first ? 'checked="checked"' : '' }}/>
+                           name="{{contactId}}" checked="{{ $first ? 'checked' : '' }}"/>
                     <div class="item-content item-text-wrap">
                         {{phone.value}}
                     </div>
