@@ -31,27 +31,30 @@ angular.module('chalo', ['ionic','ngCordova'])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
-    .state('page3', {
+    .state('welcome', {
       url: '/welcome',
-      templateUrl: 'page3.html'
+      templateUrl: 'page3.html',
+      controller: 'WelcomeCtrl'
     })
     
-    .state('page5', {
+    .state('signup-name', {
       url: '/signup/name',
-      templateUrl: 'page5.html'
+      templateUrl: 'page5.html',
+      controller: 'SignupCtrl'
     })
     
-    .state('page7', {
+    .state('signup-phone', {
       url: '/signup/phone',
-      templateUrl: 'page7.html'
+      templateUrl: 'page7.html',
+      controller: 'SignupCtrl'
     })
     
-    .state('page9', {
+    .state('chalo', {
       url: '/chalo',
       templateUrl: 'page9.html'
     })
     
-    .state('page10', {
+    .state('chalo-advanced', {
       url: '/chalo/advanced',
       templateUrl: 'page10.html'
     })
@@ -83,5 +86,64 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 	$scope.addContact();
 
-});
+})
+
+.controller('SignupCtrl', function($scope, $user){
+
+    $scope.fullName = '';
+    $scope.phone = '';
+
+    $scope.setFullName() {
+        $user.setFullName($scope.fullName);
+    }
+
+    $scope.setPhone() {
+        $user.setPhone($scope.phone);
+    }
+})
+
+.controller('WelcomeCtrl', function($scope, $user, $state) {
+    $scope.showSignup = false;
+
+    if($user.getPhone()) {
+        $state.go('chalo');
+    } else {
+        $scope.showSignup = true;
+    }
+})
+
+.factory('$storage', [function() {
+    return function() {
+        return window.localStorage;
+    };
+}])
+
+.factory('$user', ['$storage', function($storage){
+    var user = {
+        fullName: null,
+        phone: null
+    };
+    var key = "currentUser";
+    if($storage.getItem(key)) {
+        user = JSON.parse($storage.getItem(key));
+        console.log('User parsed: ' + $storage.getItem(key));
+    }
+    return function(){
+        getFullName: function() {
+            return user.fullName;
+        },
+        setFullName: function(fullName) {
+            user.fullName = fullName;
+            $storage.setItem(key, JSON.stringify(user));
+        },
+        getPhone: function() {
+            return user.phone;
+        },
+        setPhone: function(phone) {
+            user.phone = phone;
+            $storage.setItem(key, JSON.stringify(user));
+        }
+    };
+}])
+;
 
