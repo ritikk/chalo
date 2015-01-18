@@ -109,8 +109,10 @@ angular.module('chalo', ['ionic','ngCordova'])
         $cordovaSMS.send(number, message, "").then(
             function () {
                 console.log('message to ' + number + ' sent successfully');
+                $state.go('chalo');
             }, function (e) {
                 console.log('message to ' + number + ' not sent. Err: ' + e);
+                alert(e);
             }
         );
 
