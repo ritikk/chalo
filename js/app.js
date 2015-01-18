@@ -124,6 +124,7 @@ angular.module('chalo', ['ionic','ngCordova'])
 	    var message = $user.getFullName() + " says " + opText
 	        + "To get the app visit "
 	        + "https://build.phonegap.com/apps/1258277/install/NxQi1A9jR14KzDEL6yM2";
+	    console.log("messaage: " + message);
         $cordovaSocialSharing
             .shareViaSMS(message, number)
             .then(function(result) {
