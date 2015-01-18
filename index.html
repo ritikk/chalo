@@ -102,28 +102,34 @@
 <ion-view title="CHALO">
     <ion-content padding="true" class="has-header">
         <ion-list>
-            <ion-item class="item-thumbnail-left">
-                <img src="/img/avatar-img.png">
-                <h2>Chow Time</h2>
-                <p></p>
-                <a href="#/chalo/contacts/eat" class="button button-positive button-outline button-block">CHALO</a>
+            <ion-item>
+                <h2>
+                    Chow Time
+                    <i class="ion-pizza"></i>
+                </h2>
+                <a href="#/chalo/contacts/eat" class="button button-positive button-outline button-block">
+                    CHALO
+                </a>
             </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="/img/avatar-img.png">
-                <h2>Cuppa Joe</h2>
-                <p></p>
+            <ion-item>
+                <h2>
+                    Cuppa Joe
+                    <i class="ion-coffee"></i>
+                </h2>
                 <a href="#/chalo/contacts/drink" class="button button-positive button-outline button-block">CHALO</a>
             </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="/img/avatar-img.png">
-                <h2>Puff Puff</h2>
-                <p></p>
+            <ion-item>
+                <h2>
+                    Puff Puff
+                    <i class="ion-no-smoking"></i>
+                </h2>
                 <a href="#/chalo/contacts/smoke" class="button button-positive button-outline button-block">CHALO</a>
             </ion-item>
-            <ion-item class="item-thumbnail-left">
-                <img src="/img/avatar-img.png">
-                <h2>Meeting Time</h2>
-                <p></p>
+            <ion-item>
+                <h2>
+                    Meeting Time
+                    <i class="ion-calendar"></i>
+                </h2>
                 <a href="#/chalo/contacts/meeting" class="button button-positive button-outline button-block">CHALO</a>
             </ion-item>
         </ion-list>
@@ -136,7 +142,7 @@
             <a ng-click="addContact()" class="button button-positive button-block">Add</a>
             <div class="list card"  ng-repeat="contact in selectedContacts">
                 <ion-item class="item-avatar" ng-init="contactId = 'contact' + $index">
-                    <img src="{{contact.photos ? contact.photos[0].value : 'img/avatar.gif'}}" />
+                    <img src="{{contact.photos ? contact.photos[0].value : '/img/avatar.gif'}}" />
                     <h2>{{contact.name.formatted}}</h2>
                     <p>{{contact.selectedNumber}}</p>
                 </ion-item>
