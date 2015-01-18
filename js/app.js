@@ -72,7 +72,7 @@ angular.module('chalo', ['ionic','ngCordova'])
   
 })
 
-.controller('ContactsCtrl', function($scope, $cordovaContacts, $state, $stateParams){
+.controller('ContactsCtrl', function($scope, $cordovaContacts, $state, $stateParams, $cordovaSMS, $user){
 	$scope.selectedContacts = [];
     console.log('contacts controller: ' + $stateParams.opName);
 	$scope.addContact = function () {
@@ -94,6 +94,21 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 	$scope.cancel = function() {
 	    $state.go('chalo');
+	};
+
+	$scope.sendChalo = function() {
+
+	    for(var i=0; i<$scope.selectedContacts.length; i++) {
+	        var number = $scope.selectedContacts[i].selectedNumber;
+	        var message = $user.getFullName() + " says CHALO! Let's Go!. To get the app visit https://build.phonegap.com/apps/1258277/install";
+	        $cordovaSMS.send(number, message, "",
+	            function() {
+                    console.log('message to ' + number + ' sent successfully');
+	            }, function(e) {
+                    console.log('message to ' + number + ' not sent. Err: ' + e);
+	            });
+	    }
+
 	};
 
 })

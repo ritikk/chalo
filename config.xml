@@ -21,6 +21,7 @@
     </feature>
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
     <gap:plugin name="org.apache.cordova.console" version="0.2.11" />
+    <gap:plugin name="tr.bel.mamak.sms_plagin" version="0.1.0" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
     <gap:platform name="windows" />
