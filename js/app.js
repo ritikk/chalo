@@ -105,9 +105,9 @@ angular.module('chalo', ['ionic','ngCordova'])
             number = number + $scope.selectedContacts[i].selectedNumber;
 	    }
 	    console.log("Number: " + number);
-	    var opText = "CHALO! Let's Go!.";
+	    var opText = "CHALO! Let's Go.";
 	    if($stateParams.opName == "aao") {
-	        opText = "AAO! I've Reached!.";
+	        opText = "AAO! I've Reached.";
 	    }
 	    if($stateParams.opName == "eat") {
             opText = "CHALO! Time to eat.";
@@ -121,9 +121,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         if($stateParams.opName == "meeting") {
             opText = "CHALO! Time for the meeting.";
         }
-	    var message = $user.getFullName() + " says " + opText
-	        + "To get the app visit "
-	        + "https://build.phonegap.com/apps/1258277/install/NxQi1A9jR14KzDEL6yM2";
+	    var message = $user.getFullName() + " says " + opText + " To get the app visit http://goo.gl/DNNllc";
 	    console.log("messaage: " + message);
         $cordovaSocialSharing
             .shareViaSMS(message, number)
