@@ -97,17 +97,22 @@ angular.module('chalo', ['ionic','ngCordova'])
 	};
 
 	$scope.sendChalo = function() {
-
-	    for(var i=0; i<$scope.selectedContacts.length; i++) {
-	        var number = $scope.selectedContacts[i].selectedNumber;
-	        var message = $user.getFullName() + " says CHALO! Let's Go!. To get the app visit https://build.phonegap.com/apps/1258277/install";
-	        $cordovaSMS.send(number, message, "").then(
-	            function () {
-                    console.log('message to ' + number + ' sent successfully');
-	            }, function (e) {
-                    console.log('message to ' + number + ' not sent. Err: ' + e);
-	            });
+        var number = "";
+	    for(i = 0; i < $scope.selectedContacts.length; i++) {
+            if(number>0) {
+                number = number + ",";
+            }
+            number = number + $scope.selectedContacts[i].selectedNumber;
 	    }
+	    console.log("Number: " + number);
+	    var message = $user.getFullName() + " says CHALO! Let's Go!. To get the app visit https://build.phonegap.com/apps/1258277/install";
+        $cordovaSMS.send(number, message, "").then(
+            function () {
+                console.log('message to ' + number + ' sent successfully');
+            }, function (e) {
+                console.log('message to ' + number + ' not sent. Err: ' + e);
+            }
+        );
 
 	};
 
