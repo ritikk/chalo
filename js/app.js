@@ -105,7 +105,8 @@ angular.module('chalo', ['ionic','ngCordova'])
             number = number + $scope.selectedContacts[i].selectedNumber;
 	    }
 	    console.log("Number: " + number);
-	    var message = $user.getFullName() + " says CHALO! Let's Go!. To get the app visit https://build.phonegap.com/apps/1258277/install";
+	    var message = $user.getFullName() + " says CHALO! Let's Go!. To get the app visit "
+	        + "https://build.phonegap.com/apps/1258277/install/NxQi1A9jR14KzDEL6yM2";
          $cordovaSocialSharing
             .shareViaSMS(message, number)
             .then(function(result) {
