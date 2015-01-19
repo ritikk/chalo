@@ -93,16 +93,17 @@ angular.module('chalo', ['ionic','ngCordova'])
 	$scope.addContact();
 
 	$scope.cancel = function() {
+	    $scope.selectedContacts = [];	
 	    $state.go('chalo');
 	};
 
 	$scope.sendChalo = function() {
         var number = "";
 	    for(i = 0; i < $scope.selectedContacts.length; i++) {
-            if(number>0) {
-                number = number + ",";
-            }
-            number = number + $scope.selectedContacts[i].selectedNumber;
+		    if(i>0) {
+		        number = number + ",";
+		    }
+		    number = number + $scope.selectedContacts[i].selectedNumber;
 	    }
 	    console.log("Number: " + number);
 	    var opText = "CHALO! Let's Go.";
