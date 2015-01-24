@@ -22,6 +22,8 @@
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
     <gap:plugin name="org.apache.cordova.console" version="0.2.11" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.8" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
+    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
     <gap:platform name="winphone" />

@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('chalo', ['ionic','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $pushNotifications) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,8 @@ angular.module('chalo', ['ionic','ngCordova'])
       StatusBar.styleDefault();
     }
 
+    $pushNotifications.register();
+    
     console.log('console.log works just fine');
   });
 })
@@ -178,7 +180,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         } else {
             $state.go('signup-name');
         }
-    }
+    };
 })
 
 .factory('$storage', ['$window', function(win) {
@@ -188,7 +190,9 @@ angular.module('chalo', ['ionic','ngCordova'])
 .factory('$user', ['$storage', function(storage){
     var user = {
         fullName: null,
-        phone: null
+        phone: null,
+        notificationId: null,
+        notificationType: null
     };
     var key = "currentUser";
     if(storage.getItem(key)) {
@@ -211,8 +215,74 @@ angular.module('chalo', ['ionic','ngCordova'])
             user.phone = phone;
             storage.setItem(key, JSON.stringify(user));
             console.log('saved user:' + JSON.stringify(user));
+        },
+        getNotificationId : function () {
+            return user.notificationId;
+        },
+        setNotificationId : function (notificationId) {
+            user.notificationId = notificationId;
+            storage.setItem(key, JSON.stringify(user));
+            console.log('saved user:' + JSON.stringify(user));
+        },
+        getNotificationType : function () {
+            return user.notificationType;
+        },
+        setNotificationType : function (notificationType) {
+            user.notificationType = notificationType;
+            storage.setItem(key, JSON.stringify(user));
+            console.log('saved user:' + JSON.stringify(user));
         }
     };
 }])
+
+.factory('$pushNotifications', ['$cordovaPush','$cordovaDevice', '$user', function($push, $device, $user){
+    var platform = $device.getPlatform();
+
+    var androidConfig = {
+        "senderID": "979768997133",
+    };
+
+    return {
+        register : function() {
+            if(platform == 'android' || platform == 'Android') {
+                $push.register(androidConfig).then(function(result){
+                    console.log('GCM Registration Success: ' + result);
+                }, function(err){
+                    alert('Error registering with Google Cloud Messaging. err: ' + err);
+                });
+
+                $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+                      switch(notification.event) {
+                        case 'registered':
+                          if (notification.regid.length > 0 ) {
+                            console.log('registration ID = ' + notification.regid);
+                            $user.setNotificationId(notification.regid);
+                            $user.setNotificationType('Android');
+                          }
+                          break;
+
+                        case 'message':
+                          // this is the actual push notification. its format depends on the data model from the push server
+                          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+                          break;
+
+                        case 'error':
+                          alert('GCM error = ' + notification.msg);
+                          break;
+
+                        default:
+                          alert('An unknown GCM event has occurred');
+                          break;
+                      }
+                    });
+
+                }, false);
+            }
+        };
+    };
+
+}])
+
+
 ;
 
