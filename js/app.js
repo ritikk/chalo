@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('chalo', ['ionic','ngCordova'])
 
-.run(function($ionicPlatform, $pushNotifications) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,8 +18,6 @@ angular.module('chalo', ['ionic','ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    $pushNotifications.register();
 
     console.log('console.log works just fine');
   });
@@ -141,7 +139,9 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 })
 
-.controller('ChaloCtrl', function($scope, $state) {
+.controller('ChaloCtrl', function($scope, $state, $pushNotifications) {
+
+    $pushNotifications.register();
 
     $scope.selectContacts = function(op) {
         $state.go('contacts',{opName : op});
@@ -166,7 +166,7 @@ angular.module('chalo', ['ionic','ngCordova'])
         $user.setPhone(phone);
 
         $chaloApi.registerUser();
-        
+
         $state.go('chalo');
     };
 })
@@ -245,7 +245,7 @@ angular.module('chalo', ['ionic','ngCordova'])
     var platform = $device.getPlatform();
 
     var androidConfig = {
-        "senderID": "979768997133",
+        "senderID": "979768997133"
     };
 
     return {
@@ -282,14 +282,12 @@ angular.module('chalo', ['ionic','ngCordova'])
                       }
                     });
 
-                }, false);
             }
-        };
+        }
     };
-
 }])
 
-.factory('$chaloApi',['$user,$http', function($user, $http){
+.factory('$chaloApi',['$user', '$http', function($user, $http){
     var baseUrl = 'https://ritikrfp.herokuapp.com';
     return {
         registerUser : function () {
