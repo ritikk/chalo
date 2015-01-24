@@ -20,7 +20,7 @@ angular.module('chalo', ['ionic','ngCordova'])
     }
 
     $pushNotifications.register();
-    
+
     console.log('console.log works just fine');
   });
 })
@@ -161,9 +161,12 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 })
 
-.controller('SignupPhoneCtrl', function($scope, $user, $state){
+.controller('SignupPhoneCtrl', function($scope, $user, $state, $chaloApi){
     $scope.setPhone = function(phone) {
         $user.setPhone(phone);
+
+        $chaloApi.registerUser();
+        
         $state.go('chalo');
     };
 })
@@ -231,6 +234,9 @@ angular.module('chalo', ['ionic','ngCordova'])
             user.notificationType = notificationType;
             storage.setItem(key, JSON.stringify(user));
             console.log('saved user:' + JSON.stringify(user));
+        },
+        getUser : function () {
+            return user;
         }
     };
 }])
@@ -283,6 +289,19 @@ angular.module('chalo', ['ionic','ngCordova'])
 
 }])
 
-
+.factory('$chaloApi',['$user,$http', function($user, $http){
+    var baseUrl = 'https://ritikrfp.herokuapp.com';
+    return {
+        registerUser : function () {
+            $http.post(baseUrl + '/api/users', $user.getUser()).
+                success(function(data, status, headers, config){
+                    console.log('User registration successful. data:' + data);
+                }).
+                error(function(data, status, headers, config){
+                    console.log('User registration failed. data:' + data);
+                });
+        }
+    };
+}])
 ;
 
